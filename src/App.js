@@ -1,10 +1,13 @@
+import { TweetForm } from "./components/TweetForm"
+import TweetsContainer  from "./components/TweetsContainer"
 
 function App() {
   return (
     <div className="App">   
-          Test
+          <TweetForm />
+          <TweetsContainer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
