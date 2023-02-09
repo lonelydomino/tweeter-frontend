@@ -1,0 +1,5 @@
+#navcolumn {
+    position: -webkit-sticky;
+	position: fixed;
+    /* font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", */
+}

@@ -5,7 +5,7 @@ import {
     FormControl,
     FormLabel,
     FormErrorMessage,
-    FormHelperText, Input, Button, Center, Divider
+    FormHelperText, Input, Button, Center, Divider, Box, Flex
   } from '@chakra-ui/react'
 
 const TweetForm = (props) => {
@@ -18,17 +18,27 @@ const TweetForm = (props) => {
         tweetContentRef.current.value = null
     }
   return (
-    <Center>
-        <FormControl width='50%'>
-            <FormLabel>Tweet</FormLabel>
-            <Input ref={tweetContentRef} type='text' />
-            <FormHelperText>What's happening?</FormHelperText>
-            <Center my="15px">
-                <Button m='1em' onClick={handleAddTweet} colorScheme='blue'>Tweet</Button>
+    <Flex>
+        <Box w='20%' borderRight='1px' borderColor='gray.200'>
+
+        </Box>
+        <Box w='60%'>
+            <Center my='2rem'>
+                <FormControl width='90%'>
+                    <FormLabel>Tweet</FormLabel>
+                    <Input ref={tweetContentRef} type='text' />
+                    <FormHelperText>What's happening?</FormHelperText>
+                    <Center my="15px">
+                        <Button m='1em' onClick={handleAddTweet} colorScheme='blue'>Tweet</Button>
+                    </Center>
+                </FormControl>
             </Center>
             <Divider />
-        </FormControl>
-    </Center>
+        </Box>
+        <Box w='20%' borderLeft='1px' borderColor='gray.200'>
+        </Box>
+    </Flex>
+    
   )
 }
 const mapDispatchToProps = (dispatch) => {

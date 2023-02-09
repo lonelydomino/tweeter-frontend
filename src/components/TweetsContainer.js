@@ -4,6 +4,7 @@ import { fetchTweets } from '../actions/tweetActions'
 import { connect } from 'react-redux'
 import { useEffect } from 'react'
 import { VStack, StackDivider, Center, Flex, Box, Text } from '@chakra-ui/react'
+import { NavColumn } from './NavColumn'
 
 const TweetsContainer = (props) => {
     
@@ -17,13 +18,10 @@ const TweetsContainer = (props) => {
         return null
     } else{
         return (
-            <Flex border='1px' borderColor='gray.200' templateColumns='repeat(3, 1fr'>
-                <Box w='20%' border='1px' borderColor='gray.200'>
+            <Flex>
+                <Box w='20%' borderRight='1px' borderColor='gray.200'>
                     <Center>
-                        <Text>
-                            Login
-                        </Text>
-
+                        <NavColumn />
                     </Center>
                 </Box>
                 <Box w='60%'>
@@ -39,7 +37,7 @@ const TweetsContainer = (props) => {
                         </VStack>
                     </Center>
                 </Box>
-                <Box w='20%' border='1px' borderColor='gray.200'>
+                <Box w='20%' borderLeft='1px' borderColor='gray.200'>
 
                 </Box>
 
