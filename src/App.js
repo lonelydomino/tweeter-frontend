@@ -1,12 +1,16 @@
-import { TweetForm } from "./components/TweetForm"
-import TweetsContainer  from "./components/TweetsContainer"
+import TweetForm from "./components/TweetForm"
+import TweetsContainer from "./components/TweetsContainer"
+import { ChakraProvider } from '@chakra-ui/react'
+import './styles/app.css'
 
 function App() {
   return (
-    <div className="App">   
-          <TweetForm />
-          <TweetsContainer />
-    </div>
+    <ChakraProvider>
+      <div className="App">   
+            <TweetForm />
+            <TweetsContainer />
+      </div>
+    </ChakraProvider>
   )
 }
 

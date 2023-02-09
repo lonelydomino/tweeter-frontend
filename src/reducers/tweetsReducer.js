@@ -6,6 +6,11 @@ const tweetsReducer = (state = { tweets:[] }, action) => {
                 ...state,
                 tweets: action.tweets
             }
+        case 'ADD_TWEET':
+            return {
+                ...state,
+                tweets: [...state.tweets, action.tweet.tweet]
+            }
             default: return state
     }
 }

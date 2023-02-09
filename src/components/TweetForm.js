@@ -1,12 +1,38 @@
-import React from 'react'
+import React , { useRef } from 'react'
+import { connect } from 'react-redux'
+import { createTweet } from '../actions/tweetActions'
+import {
+    FormControl,
+    FormLabel,
+    FormErrorMessage,
+    FormHelperText, Input, Button, Center
+  } from '@chakra-ui/react'
 
-export const TweetForm = () => {
+const TweetForm = (props) => {
+    const tweetContentRef = useRef()
 
+    const handleAddTweet = (e) => {
+        const content = tweetContentRef.current.value
+        if(!content || content === '') return
+        props.createTweet(content)
+        tweetContentRef.current.value = null
+    }
   return (
-    <>
-        <div>Tweet Form</div>
-        <input type="text" />
-        <button>Tweet</button>
-    </>
+    <Center>
+        <FormControl width='50%'>
+            <FormLabel>Tweet</FormLabel>
+            <Input ref={tweetContentRef} type='text' />
+            <FormHelperText>What's happening?</FormHelperText>
+            <Center>
+                <Button m='1em' onClick={handleAddTweet} colorScheme='blue'>Tweet</Button>
+            </Center>
+        </FormControl>
+    </Center>
   )
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createTweet: (tweet) => dispatch(createTweet(tweet))
+    }
+}
+export default connect(null, mapDispatchToProps)(TweetForm)
