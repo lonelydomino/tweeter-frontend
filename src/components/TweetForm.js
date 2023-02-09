@@ -5,7 +5,7 @@ import {
     FormControl,
     FormLabel,
     FormErrorMessage,
-    FormHelperText, Input, Button, Center
+    FormHelperText, Input, Button, Center, Divider
   } from '@chakra-ui/react'
 
 const TweetForm = (props) => {
@@ -23,9 +23,10 @@ const TweetForm = (props) => {
             <FormLabel>Tweet</FormLabel>
             <Input ref={tweetContentRef} type='text' />
             <FormHelperText>What's happening?</FormHelperText>
-            <Center>
+            <Center my="15px">
                 <Button m='1em' onClick={handleAddTweet} colorScheme='blue'>Tweet</Button>
             </Center>
+            <Divider />
         </FormControl>
     </Center>
   )

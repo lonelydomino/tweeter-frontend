@@ -3,7 +3,7 @@ import { Tweet } from './Tweet'
 import { fetchTweets } from '../actions/tweetActions'
 import { connect } from 'react-redux'
 import { useEffect } from 'react'
-import { VStack, StackDivider, Center } from '@chakra-ui/react'
+import { VStack, StackDivider, Center, Flex, Box, Text } from '@chakra-ui/react'
 
 const TweetsContainer = (props) => {
     
@@ -17,18 +17,34 @@ const TweetsContainer = (props) => {
         return null
     } else{
         return (
-            <Center>
-                <VStack 
-                    width='50%'
-                    divider={<StackDivider borderColor='green.200' />}
-                    spacing={4}
-                    align='stretch'
-                >
-                    {tweets.map( tweet => {
-                        return (<Tweet key={tweet._id} content={tweet.content} />)
-                    })}
-                </VStack>
-            </Center>
+            <Flex border='1px' borderColor='gray.200' templateColumns='repeat(3, 1fr'>
+                <Box w='20%' border='1px' borderColor='gray.200'>
+                    <Center>
+                        <Text>
+                            Login
+                        </Text>
+
+                    </Center>
+                </Box>
+                <Box w='60%'>
+                    <Center>
+                        <VStack 
+                            divider={<StackDivider borderColor='green.200' />}
+                            spacing={4}
+                            align='stretch' w="100%"
+                        >
+                            {tweets.map( tweet => {
+                                return (<Tweet key={tweet._id} content={tweet.content} />)
+                            })}
+                        </VStack>
+                    </Center>
+                </Box>
+                <Box w='20%' border='1px' borderColor='gray.200'>
+
+                </Box>
+
+
+            </Flex>
         )
     }
 }
