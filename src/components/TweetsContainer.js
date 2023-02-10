@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { useEffect } from 'react'
 import { VStack, StackDivider, Center, Flex, Box, Text } from '@chakra-ui/react'
 import { NavColumn } from './NavColumn'
+import { SignupForm } from './SignupForm'
 
 const TweetsContainer = (props) => {
     
@@ -38,7 +39,7 @@ const TweetsContainer = (props) => {
                     </Center>
                 </Box>
                 <Box w='20%' borderLeft='1px' borderColor='gray.200'>
-
+                    <SignupForm />
                 </Box>
 
 
