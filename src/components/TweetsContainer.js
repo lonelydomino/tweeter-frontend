@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { useEffect } from 'react'
 import { VStack, StackDivider, Center, Flex, Box, Text } from '@chakra-ui/react'
 import { NavColumn } from './NavColumn'
-import { SignupForm } from './SignupForm'
+import { LoginForm } from './LoginForm'
 
 const TweetsContainer = (props) => {
     
@@ -39,17 +39,18 @@ const TweetsContainer = (props) => {
                     </Center>
                 </Box>
                 <Box w='20%' borderLeft='1px' borderColor='gray.200'>
-                    <SignupForm />
+                    {props.loggedIn ? null: <LoginForm /> }
                 </Box>
-
-
             </Flex>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    return { tweets: state.tweets.tweets }
+    return { 
+            tweets: state.tweets.tweets,
+            loggedIn: state.auth.loggedIn
+        }
 }
 
 const mapDispatchToProps = (dispatch) => {
