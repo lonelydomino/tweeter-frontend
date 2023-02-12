@@ -1,16 +1,35 @@
 import React from 'react'
-import { Tweet } from './Tweet'
-import { fetchTweets } from '../actions/tweetActions'
-import { connect } from 'react-redux'
+import { Tweet } from '../Tweet'
+import { fetchTweets } from '../../actions/tweetActions'
+import { connect, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import { VStack, StackDivider, Center, Flex, Box, Text } from '@chakra-ui/react'
-import { NavColumn } from './NavColumn'
-import { LoginForm } from './LoginForm'
+import { VStack, StackDivider, Center, Flex, Box, Text, Button } from '@chakra-ui/react'
+import { NavColumn } from '../NavColumn'
+import { LoginForm } from '../LoginForm'
+import { setAuthData } from '../../actions/authActions'
+import { handleLogout } from '../../actions/authActions'
+import RightContainer from './RightContainer'
 
 const TweetsContainer = (props) => {
+    const dispatch = useDispatch()
     
     useEffect(() => {
         props.fetchTweets()
+
+        const token = localStorage.getItem('token')
+        const expiryDate = localStorage.getItem('expiryDate')
+        if(!token || !expiryDate){
+            return
+        }
+        if(new Date(expiryDate) <= new Date()){
+            //LOG OUT 
+            return
+        }
+        const userId = localStorage.getItem('userId')
+        const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime()
+        dispatch(setAuthData({isAuth: true, token: token, userId: userId}))
+        //set autologout
+
     }, [])
 
     let tweets = props.tweets
@@ -38,9 +57,7 @@ const TweetsContainer = (props) => {
                         </VStack>
                     </Center>
                 </Box>
-                <Box w='20%' borderLeft='1px' borderColor='gray.200'>
-                    {props.loggedIn ? null: <LoginForm /> }
-                </Box>
+                <RightContainer dispatch={dispatch} isAuth={props.isAuth}/>
             </Flex>
         )
     }
@@ -49,7 +66,7 @@ const TweetsContainer = (props) => {
 const mapStateToProps = (state) => {
     return { 
             tweets: state.tweets.tweets,
-            loggedIn: state.auth.loggedIn
+            isAuth: state.auth.isAuth
         }
 }
 

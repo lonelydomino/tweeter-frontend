@@ -52,8 +52,31 @@ export const handleLogin = (data) => {
         })
         .then( resData => {
             console.log(resData)
-            dispatch({type: 'LOGIN', userId: resData.userId})
+            dispatch({type: 'LOGIN', userId: resData.userId, token: resData.token, isAuth: true})
+            localStorage.setItem('token', resData.token)
+            localStorage.setItem('userId', resData.userId)
+            const remainingMilliseconds = 60 * 60 * 1000;
+            const expiryDate = new Date(
+                new Date().getTime() + remainingMilliseconds
+            )
+            localStorage.setItem('expiryDate', expiryDate.toISOString());
+            // this.setAutoLogout(remainingMilliseconds);
+        })
+        .catch(err => {
+            console.log(err)
         })
 
+    }
+}
+export const setAuthData = (data) => {
+    return (dispatch) => {
+        dispatch({type: 'SET_AUTHDATA', data})
+    }
+
+}
+
+export const handleLogout = () => {
+    return (dispatch) => {
+        dispatch({ type: 'LOGOUT'})
     }
 }

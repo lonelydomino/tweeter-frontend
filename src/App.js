@@ -1,5 +1,5 @@
 import TweetForm from "./components/TweetForm"
-import TweetsContainer from "./components/TweetsContainer"
+import TweetsContainer from "./components/containers/TweetsContainer"
 import { ChakraProvider } from '@chakra-ui/react'
 import './styles/app.css'
 

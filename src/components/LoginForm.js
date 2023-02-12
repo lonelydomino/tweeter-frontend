@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/signupform.css'
+import '../styles/loginform.css'
 import {
     FormControl,
     FormLabel,
@@ -26,6 +26,7 @@ export const LoginForm = () => {
         }
         dispatch(handleLogin(data))
     }
+
   return (
     <div id='login-form'>
         <FormControl>
@@ -35,10 +36,11 @@ export const LoginForm = () => {
                     <Input ref={emailRef} type='email' />
                     <FormLabel>Password</FormLabel>
                     <Input ref={passwordRef} type='password' />
-                    <Button onClick={handleSubmit}>Submit</Button>
+                    <Button colorScheme='blue' onClick={handleSubmit}>Submit</Button>
                 </VStack>
             </Center>
         </FormControl>
+        <Center my={5}><Button colorScheme='blue'>New? Sign up</Button></Center>
     </div>
   )
 }
