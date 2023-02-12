@@ -6,8 +6,10 @@ import { LoginForm } from '../LoginForm'
 const RightContainer = (props) => {
   return (
     <Box w='20%' borderLeft='1px' borderColor='gray.200'>
-                    {props.isAuth ? <Button colorScheme='blue' onClick={() => props.dispatch(handleLogout())}> Logout</Button> : <LoginForm /> }
-                </Box>
+        <Center>
+            { props.isAuth ? <Button colorScheme='blue' onClick={() => props.dispatch(handleLogout())}> Logout</Button> : <LoginForm /> }
+        </Center>
+    </Box>
   )
 }
 
