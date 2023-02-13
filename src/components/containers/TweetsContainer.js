@@ -23,7 +23,7 @@ const TweetsContainer = () => {
                                 align='stretch' w="120%"
                             >
                                 { tweets.map(tweet => {
-                                    return <Tweet content={ tweet.content } authorName={tweet.authorName} key={ tweet._id} />
+                                    return <Tweet content={ tweet.content } authorName={tweet.authorName} tweetId={tweet._id} key={ tweet._id} />
                                 }) }
                             </VStack>
                         </Center> 

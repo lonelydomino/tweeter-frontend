@@ -1,9 +1,18 @@
-import { Box, Card, CardHeader, Heading, CardBody, Text } from '@chakra-ui/react'
+import { Box, Button, Card, CardHeader, Heading, CardBody, Text } from '@chakra-ui/react'
 import React from 'react'
 import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteTweet } from '../actions/tweetActions'
 
-export const Tweet = ({ content, authorName }) => {
+export const Tweet = ({ content, authorName, tweetId }) => {
     let size = 'lg'
+    const dispatch = useDispatch()
+    const userId = useSelector(state => state.auth.userId)
+
+    const handleDelete = tweetId => {
+        dispatch(deleteTweet(tweetId, userId))
+    }
+
   return (
     <Box w='100%'>
       <Card key={'size'} size={size} boxShadow='none'>
@@ -13,6 +22,7 @@ export const Tweet = ({ content, authorName }) => {
             </CardHeader>
             <CardBody>
         <Text>{ content }</Text>
+        <Button colorScheme='red' onClick={() => handleDelete(tweetId)}>Delete</Button>
       </CardBody>
     </Card>
 

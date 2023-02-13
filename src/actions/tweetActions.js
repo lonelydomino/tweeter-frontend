@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux"
+
 export const fetchTweets = () => {
     return (dispatch) => {
         fetch('http://localhost:8080/feed/tweets')
@@ -30,6 +32,29 @@ export const createTweet = (data) => {
         })
         .then(json => {
             dispatch({type: 'ADD_TWEET', tweet: json})
+        })
+    }
+}
+
+export const deleteTweet = (tweetId, userId) => {
+    return (dispatch) => {
+        fetch('http://localhost:8080/feed/tweet/' + tweetId, {
+            method: 'DELETE',
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+        .then(resp => {
+            if(resp.status !== 200 && resp.status !== 201){
+                throw new Error('Deleting a tweet failed.')
+            }
+            return resp.json()
+        })
+        .then(resData => {
+            dispatch({type: 'DELETE_TWEET', tweetId: tweetId})
+        })
+        .catch(err => {
+            console.log(err)
         })
     }
 }
