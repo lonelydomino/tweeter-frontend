@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../styles/loginform.css'
 import {
     FormControl,
@@ -13,12 +13,13 @@ import {
 import { useDispatch } from 'react-redux'
 import { useRef } from 'react'
 import { handleLogin } from '../actions/authActions'
+import { SignupForm } from './SignupForm'
 
 export const LoginForm = () => {
     const dispatch = useDispatch()
     const emailRef = useRef()
     const passwordRef = useRef()
-
+    const [signUp, setSignup] = useState(false)
     const handleSubmit = () => {
         const data = {
             email: emailRef.current.value,
@@ -40,7 +41,8 @@ export const LoginForm = () => {
                 </VStack>
             </Center>
         </FormControl>
-        <Center my={5}><Button colorScheme='blue'>New? Sign up</Button></Center>
+        <Center my={5}><Button onClick={() => setSignup(true)}colorScheme='blue'>New? Sign up</Button></Center>
+        {signUp ? <SignupForm /> : null}
     </div>
   )
 }

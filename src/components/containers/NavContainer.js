@@ -5,7 +5,7 @@ import '../../styles/navcontainer.css'
 
 const NavContainer = () => {
   return (
-        <Box w='20%' borderRight='1px' borderColor='gray.200'>
+        <Box id='nav-container' w='20%' borderRight='1px' borderColor='gray.200'>
             <Center>
                 <NavColumn />
             </Center>

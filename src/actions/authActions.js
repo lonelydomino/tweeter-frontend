@@ -52,9 +52,10 @@ export const handleLogin = (data) => {
         })
         .then( resData => {
             console.log(resData)
-            dispatch({type: 'LOGIN', userId: resData.userId, token: resData.token, isAuth: true})
+            dispatch({type: 'LOGIN', userId: resData.userId, name: resData.name, token: resData.token, isAuth: true})
             localStorage.setItem('token', resData.token)
             localStorage.setItem('userId', resData.userId)
+            localStorage.setItem('name', resData.name)
             const remainingMilliseconds = 60 * 60 * 1000;
             const expiryDate = new Date(
                 new Date().getTime() + remainingMilliseconds
@@ -65,7 +66,6 @@ export const handleLogin = (data) => {
         .catch(err => {
             console.log(err)
         })
-
     }
 }
 export const setAuthData = (data) => {

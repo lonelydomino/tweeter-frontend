@@ -1,4 +1,5 @@
-/* #nav-container{
-    position: -webkit-sticky;
-	position: fixed;
-} */
+#nav-container{
+    /* position: -webkit-sticky; */
+	/* position: fixed;  */
+    padding: 6rem 0;
+}

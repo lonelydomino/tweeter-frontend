@@ -1,6 +1,5 @@
 
-const authReducer = (state = { isAuth: false, userId: '', token: '' }, action) => {
-    
+const authReducer = (state = { isAuth: false, userId: '', token: '', name: '' }, action) => {
     switch(action.type){
         case 'SIGNUP':
             return {
@@ -13,25 +12,28 @@ const authReducer = (state = { isAuth: false, userId: '', token: '' }, action) =
                 ...state,
                 isAuth: true,
                 userId: action.userId,
-                token: action.token
+                token: action.token,
+                name: action.name
             }
         case 'SET_AUTHDATA':
             return {
                 ...state, 
                 isAuth: action.data.isAuth,
                 token: action.data.token,
-                userId: action.data.userId
+                userId: action.data.userId,
+                name: action.data.name
             }
         case 'LOGOUT':
             localStorage.removeItem('token')
             localStorage.removeItem('expiryDate')
             localStorage.removeItem('userId')
-
+            localStorage.removeItem('name')
             return {
                 ...state,
                 isAuth: false,
                 token: null,
-                userId: null
+                userId: null,
+                name: null
             }
         default: return state
     }

@@ -1,28 +1,36 @@
 import React , { useRef } from 'react'
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import { createTweet } from '../actions/tweetActions'
 import {
     FormControl,
     FormLabel,
-    FormErrorMessage,
-    FormHelperText, Input, Button, Center, Divider, Box, Flex
+    FormHelperText, Input, Button, Center, Divider, Box,
   } from '@chakra-ui/react'
 
 const TweetForm = (props) => {
     const tweetContentRef = useRef()
+    const userId = useSelector( state => {
+        return state.auth.userId
+    })
+    const token = useSelector(state => state.auth.userId)
+    const name = useSelector(state => {
+        return state.auth.name
+    })
 
     const handleAddTweet = (e) => {
         const content = tweetContentRef.current.value
+        let tweet = {
+            content: content,
+            userId: userId,
+            name: name,
+            token: token
+        }
         if(!content || content === '') return
-        props.createTweet(content)
+        props.createTweet(tweet)
         tweetContentRef.current.value = null
     }
   return (
-    <Flex>
-        <Box w='20%' borderRight='1px' borderColor='gray.200'>
-
-        </Box>
-        <Box w='60%'>
+        <Box w='100%'>
             <Center my='2rem'>
                 <FormControl width='90%'>
                     <FormLabel>Tweet</FormLabel>
@@ -35,9 +43,6 @@ const TweetForm = (props) => {
             </Center>
             <Divider />
         </Box>
-        <Box w='20%' borderLeft='1px' borderColor='gray.200'>
-        </Box>
-    </Flex>
     
   )
 }

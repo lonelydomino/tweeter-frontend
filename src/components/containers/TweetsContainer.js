@@ -14,20 +14,19 @@ const TweetsContainer = () => {
     const tweets = useSelector(state => state.tweets.tweets)
         return (
                 <Box w='60%'>
-                    <VStack>
+                    <VStack align='stretch'>
                         <TweetForm />
                         <Center>
                             <VStack 
                                 divider={<StackDivider borderColor='green.200' />}
                                 spacing={4}
-                                align='stretch' w="100%"
+                                align='stretch' w="120%"
                             >
-                                
                                 { tweets.map(tweet => {
-                                    <Tweet content={ tweet.content }/>
-                                    }) }
+                                    return <Tweet content={ tweet.content } authorName={tweet.authorName} key={ tweet._id} />
+                                }) }
                             </VStack>
-                        </Center>
+                        </Center> 
 
                     </VStack>
                 </Box>
