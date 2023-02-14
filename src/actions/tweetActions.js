@@ -12,13 +12,14 @@ export const fetchTweets = () => {
 
 export const createTweet = (data) => {
     return dispatch => {
+        console.log(data)
         fetch('http://localhost:8080/feed/tweet', {
             method: 'POST',
             headers: {'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + data.token},
             body: JSON.stringify({
                 content: data.content,
-                authorName: data.name,
+                authorName: data.authorName,
                 authorId: data.userId,
                 token: data.token
             })

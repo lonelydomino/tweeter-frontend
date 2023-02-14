@@ -12,7 +12,7 @@ const TweetForm = (props) => {
     const userId = useSelector( state => {
         return state.auth.userId
     })
-    const token = useSelector(state => state.auth.userId)
+    const token = useSelector(state => state.auth.token)
     const name = useSelector(state => {
         return state.auth.name
     })
@@ -22,7 +22,7 @@ const TweetForm = (props) => {
         let tweet = {
             content: content,
             userId: userId,
-            name: name,
+            authorName: name,
             token: token
         }
         if(!content || content === '') return

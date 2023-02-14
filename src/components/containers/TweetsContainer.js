@@ -12,6 +12,7 @@ const TweetsContainer = () => {
     }, [])
 
     const tweets = useSelector(state => state.tweets.tweets)
+    const reversed = tweets.slice().reverse()
         return (
                 <Box w='60%'>
                     <VStack align='stretch'>
@@ -22,8 +23,8 @@ const TweetsContainer = () => {
                                 spacing={4}
                                 align='stretch' w="120%"
                             >
-                                { tweets.map(tweet => {
-                                    return <Tweet content={ tweet.content } authorName={tweet.authorName} tweetId={tweet._id} key={ tweet._id} />
+                                { reversed.map(tweet => {
+                                    return <Tweet key={tweet._id } tweet={tweet} />
                                 }) }
                             </VStack>
                         </Center> 
