@@ -4,6 +4,8 @@ const authReducer = (state = { isAuth: false, userId: '', token: '', name: '' },
         case 'SIGNUP':
             return {
                 ...state,
+                handle: action.handle,
+                token: action.token,
                 isAuth: true,
                 userId: action.userId
             }
@@ -22,7 +24,7 @@ const authReducer = (state = { isAuth: false, userId: '', token: '', name: '' },
                 isAuth: action.data.isAuth,
                 token: action.data.token,
                 userId: action.data.userId,
-                name: action.data.name
+                handle: action.data.handle
             }
         case 'LOGOUT':
             localStorage.removeItem('token')

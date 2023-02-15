@@ -21,7 +21,15 @@ export const handleSignup = (data) => {
         })
         .then(json => {
             console.log(json)
-            dispatch({type: 'SIGNUP', userId: json.userId})
+            dispatch({type: 'SIGNUP', userId: json.userId, handle: json.handle, token: json.token, isAuth: true})
+            localStorage.setItem('token', json.token)
+            localStorage.setItem('handle', json.handle)
+            localStorage.setItem('userId', json.userId)
+            const remainingMilliseconds = 60 * 60 * 1000;
+            const expiryDate = new Date(
+                new Date().getTime() + remainingMilliseconds
+            )
+            localStorage.setItem('expiryDate', expiryDate.toISOString())
         })
         .catch(err => {
             console.log(err)
@@ -61,7 +69,7 @@ export const handleLogin = (data) => {
             const expiryDate = new Date(
                 new Date().getTime() + remainingMilliseconds
             )
-            localStorage.setItem('expiryDate', expiryDate.toISOString());
+            localStorage.setItem('expiryDate', expiryDate.toISOString())
             // this.setAutoLogout(remainingMilliseconds);
         })
         .catch(err => {

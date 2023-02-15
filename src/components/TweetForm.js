@@ -24,7 +24,6 @@ const TweetForm = (props) => {
             authorName: handle,
             token: token
         }
-        debugger
         if(!content || content === '') return
         props.createTweet(tweet)
         tweetContentRef.current.value = null

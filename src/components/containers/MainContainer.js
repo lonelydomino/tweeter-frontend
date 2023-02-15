@@ -13,11 +13,9 @@ const MainContainer = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        
-
         const token = localStorage.getItem('token')
         const expiryDate = localStorage.getItem('expiryDate')
-        const name = localStorage.getItem('name')
+        const handle = localStorage.getItem('handle')
         if(!token || !expiryDate){
             return
         }
@@ -27,7 +25,7 @@ const MainContainer = () => {
         }
         const userId = localStorage.getItem('userId')
         // const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime()
-        dispatch(setAuthData({isAuth: true, token: token, name: name, userId: userId}))
+        dispatch(setAuthData({isAuth: true, token: token, handle: handle, userId: userId}))
         //set autologout
     }, [])
 
