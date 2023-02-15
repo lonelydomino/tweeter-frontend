@@ -8,7 +8,8 @@ export const handleSignup = (data) => {
             body: JSON.stringify({
                 email: data.email,
                 password: data.password,
-                name: data.name
+                name: data.name,
+                handle: '@' + data.handle
             })
         })
         .then(resp => {
@@ -51,9 +52,9 @@ export const handleLogin = (data) => {
             return res.json() 
         })
         .then( resData => {
-            console.log(resData)
-            dispatch({type: 'LOGIN', userId: resData.userId, name: resData.name, token: resData.token, isAuth: true})
+            dispatch({type: 'LOGIN', userId: resData.userId, handle: resData.handle, name: resData.name, token: resData.token, isAuth: true})
             localStorage.setItem('token', resData.token)
+            localStorage.setItem('handle', resData.handle)
             localStorage.setItem('userId', resData.userId)
             localStorage.setItem('name', resData.name)
             const remainingMilliseconds = 60 * 60 * 1000;

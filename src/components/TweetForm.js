@@ -13,18 +13,18 @@ const TweetForm = (props) => {
         return state.auth.userId
     })
     const token = useSelector(state => state.auth.token)
-    const name = useSelector(state => {
-        return state.auth.name
-    })
+    
+    const handle = useSelector(state => state.auth.handle)
 
     const handleAddTweet = (e) => {
         const content = tweetContentRef.current.value
         let tweet = {
             content: content,
             userId: userId,
-            authorName: name,
+            authorName: handle,
             token: token
         }
+        debugger
         if(!content || content === '') return
         props.createTweet(tweet)
         tweetContentRef.current.value = null

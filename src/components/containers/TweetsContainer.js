@@ -13,8 +13,9 @@ const TweetsContainer = () => {
 
     const tweets = useSelector(state => state.tweets.tweets)
     const reversed = tweets.slice().reverse()
+
         return (
-                <Box w='60%'>
+                <Box w='30%'>
                     <VStack align='stretch'>
                         <TweetForm />
                         <Center>

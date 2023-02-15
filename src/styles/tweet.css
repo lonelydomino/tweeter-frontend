@@ -1,0 +1,9 @@
+.tweet-footer-buttons {
+    background-color: transparent;
+
+}
+.tweet-footer-buttons:hover {
+    background-color: transparent;
+    color: rgb(0, 213, 255);
+
+}

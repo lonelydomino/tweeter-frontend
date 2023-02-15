@@ -14,13 +14,16 @@ export const SignupForm = () => {
     const nameRef = useRef()
     const passwordRef = useRef()
     const emailRef = useRef()
-    
+    const handleRef = useRef()
+
     const handleSubmit = () => {
         const data = {
             name: nameRef.current.value,
             password: passwordRef.current.value,
-            email: emailRef.current.value
+            email: emailRef.current.value,
+            handle: handleRef.current.value
         }
+        
         dispatch(handleSignup(data))
     }
 
@@ -33,6 +36,8 @@ export const SignupForm = () => {
                 <VStack>
                     <FormLabel>Email address</FormLabel>
                     <Input ref={emailRef} type='email' />
+                    <FormLabel>Handle</FormLabel>
+                    <Input ref={handleRef} type='text' />
                     <FormLabel>Name</FormLabel>
                     <Input ref={nameRef}type='text' />
                     <FormLabel >Password</FormLabel>

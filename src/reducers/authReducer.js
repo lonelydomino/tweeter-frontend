@@ -11,6 +11,7 @@ const authReducer = (state = { isAuth: false, userId: '', token: '', name: '' },
             return {
                 ...state,
                 isAuth: true,
+                handle: action.handle,
                 userId: action.userId,
                 token: action.token,
                 name: action.name
@@ -28,12 +29,15 @@ const authReducer = (state = { isAuth: false, userId: '', token: '', name: '' },
             localStorage.removeItem('expiryDate')
             localStorage.removeItem('userId')
             localStorage.removeItem('name')
+            localStorage.removeItem('handle')
+
             return {
                 ...state,
                 isAuth: false,
                 token: null,
                 userId: null,
-                name: null
+                name: null,
+                handle: null
             }
         default: return state
     }

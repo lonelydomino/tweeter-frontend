@@ -9,7 +9,7 @@ const RightContainer = () => {
     const dispatch = useDispatch()
     const isAuth = useSelector(state => state.auth.isAuth)
   return (
-    <Box id='right-container' w='20%' borderLeft='1px' borderColor='gray.200'>
+    <Box id='right-container' w='35%' borderLeft='1px' borderColor='gray.200'>
         <Center>
             { isAuth ? <Button colorScheme='blue' onClick={() => dispatch(handleLogout())}> Logout</Button> : <LoginForm /> }
         </Center>

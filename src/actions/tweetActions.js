@@ -12,7 +12,6 @@ export const fetchTweets = () => {
 
 export const createTweet = (data) => {
     return dispatch => {
-        console.log(data)
         fetch('http://localhost:8080/feed/tweet', {
             method: 'POST',
             headers: {'Content-Type': 'application/json',
