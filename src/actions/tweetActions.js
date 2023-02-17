@@ -58,3 +58,23 @@ export const deleteTweet = (tweetId, userId) => {
         })
     }
 }
+
+export const updateLikes = (tweetId, action) => {
+        return (dispatch) => {
+            fetch('http://localhost:8080/feed/tweets/' + tweetId + '/act', {
+                method: 'PATCH',
+                headers: {
+                    Authorization : 'Bearer ' +localStorage.getItem('token'),
+                    'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify({
+                    action: action,
+                    tweetId: tweetId
+                })
+            })
+            .then(resp => {
+            })
+            // dispatch(update number of likes in state)
+        }
+
+}

@@ -7,14 +7,34 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 import { BiLike, BiChat, BiShare } from 'react-icons/bi'
 import { AiFillDelete } from 'react-icons/ai'
 import '../styles/tweet.css'
+import { updateLikes } from '../actions/tweetActions'
 
 export const Tweet = ({ tweet }) => {
     let size = 'lg'
     const dispatch = useDispatch()
     const userId = useSelector(state => state.auth.userId)
     const isAuth = useSelector( state => state.auth.isAuth)
+    const toggleButtonText = {
+        Like: (button) => {
+            button.textContent = "Unlike"
+            //add icon in line?
+        },
+        Unlike: (button) => {
+            button.textContent = "Like"
+            //add icon in line?
+
+        }
+    }
+    //add an arrow function that checks if tweet has been liked, in useEffect
+
     const handleDelete = tweetId => {
         dispatch(deleteTweet(tweetId, userId))
+    }
+
+    const handleLikes = (e, tweetId) => {
+        let action = e.currentTarget.textContent
+        toggleButtonText[action](e.currentTarget)
+        dispatch(updateLikes(tweetId, action))
     }
 
   return (
@@ -45,7 +65,7 @@ export const Tweet = ({ tweet }) => {
                 minW: '136px',
             },
              }}>
-                <Button className='tweet-footer-buttons' flex='1' variant='ghost' leftIcon={<BiLike />}>
+                <Button className='tweet-footer-buttons' onClick={(e) => handleLikes(e, tweet._id)} flex='1' variant='ghost' leftIcon={<BiLike />}>
                     Like
                 </Button>
                 <Button className='tweet-footer-buttons' flex='1' variant='ghost' leftIcon={<BiChat />}>
