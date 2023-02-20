@@ -76,5 +76,4 @@ export const updateLikes = (tweetId, action) => {
             })
             // dispatch(update number of likes in state)
         }
-
 }

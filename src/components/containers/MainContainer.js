@@ -16,6 +16,9 @@ const MainContainer = () => {
         const token = localStorage.getItem('token')
         const expiryDate = localStorage.getItem('expiryDate')
         const handle = localStorage.getItem('handle')
+        const likedTweets = localStorage.getItem('likedTweets')
+        const userId = localStorage.getItem('userId')
+        
         if(!token || !expiryDate){
             return
         }
@@ -23,9 +26,8 @@ const MainContainer = () => {
             //LOG OUT 
             return
         }
-        const userId = localStorage.getItem('userId')
         // const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime()
-        dispatch(setAuthData({isAuth: true, token: token, handle: handle, userId: userId}))
+        dispatch(setAuthData({isAuth: true, token: token, handle: handle, userId: userId, likedTweets: likedTweets}))
         //set autologout
     }, [])
 

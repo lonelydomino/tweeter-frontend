@@ -60,11 +60,13 @@ export const handleLogin = (data) => {
             return res.json() 
         })
         .then( resData => {
-            dispatch({type: 'LOGIN', userId: resData.userId, handle: resData.handle, name: resData.name, token: resData.token, isAuth: true})
+            dispatch({type: 'LOGIN', userId: resData.userId, handle: resData.handle, name: resData.name, likedTweets: resData.likedTweets, token: resData.token, isAuth: true})
             localStorage.setItem('token', resData.token)
             localStorage.setItem('handle', resData.handle)
             localStorage.setItem('userId', resData.userId)
             localStorage.setItem('name', resData.name)
+            localStorage.setItem('likedTweets', resData.likedTweets)
+            
             const remainingMilliseconds = 60 * 60 * 1000;
             const expiryDate = new Date(
                 new Date().getTime() + remainingMilliseconds
@@ -79,6 +81,7 @@ export const handleLogin = (data) => {
 }
 export const setAuthData = (data) => {
     return (dispatch) => {
+        debugger
         dispatch({type: 'SET_AUTHDATA', data})
     }
 

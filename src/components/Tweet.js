@@ -1,5 +1,5 @@
 import { Box, Button, Card, CardHeader, Heading, CardBody, Text, Flex, IconButton, CardFooter } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteTweet } from '../actions/tweetActions'
@@ -10,10 +10,16 @@ import '../styles/tweet.css'
 import { updateLikes } from '../actions/tweetActions'
 
 export const Tweet = ({ tweet }) => {
+    useEffect(() => {
+        setLikedTweets(tweet, likedTweets)
+    }, [])
     let size = 'lg'
     const dispatch = useDispatch()
+
+    const likedTweets = useSelector(state => state.auth.likedTweets)
     const userId = useSelector(state => state.auth.userId)
     const isAuth = useSelector( state => state.auth.isAuth)
+
     const toggleButtonText = {
         Like: (button) => {
             button.textContent = "Unlike"
@@ -22,10 +28,15 @@ export const Tweet = ({ tweet }) => {
         Unlike: (button) => {
             button.textContent = "Like"
             //add icon in line?
-
         }
     }
-    //add an arrow function that checks if tweet has been liked, in useEffect
+    const setLikedTweets = (tweet, likedTweets) => {
+        if(!likedTweets === undefined){
+            if(tweet._id === likedTweets[0]){
+                debugger
+            }
+        }
+    }
 
     const handleDelete = tweetId => {
         dispatch(deleteTweet(tweetId, userId))
@@ -34,6 +45,7 @@ export const Tweet = ({ tweet }) => {
     const handleLikes = (e, tweetId) => {
         let action = e.currentTarget.textContent
         toggleButtonText[action](e.currentTarget)
+       
         dispatch(updateLikes(tweetId, action))
     }
 

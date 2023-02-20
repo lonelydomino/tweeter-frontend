@@ -1,5 +1,5 @@
 
-const authReducer = (state = { isAuth: false, userId: '', token: '', name: '' }, action) => {
+const authReducer = (state = { isAuth: false, userId: '', token: '', name: '', likedTweets: [] }, action) => {
     switch(action.type){
         case 'SIGNUP':
             return {
@@ -16,7 +16,8 @@ const authReducer = (state = { isAuth: false, userId: '', token: '', name: '' },
                 handle: action.handle,
                 userId: action.userId,
                 token: action.token,
-                name: action.name
+                name: action.name,
+                likedTweets: action.likedTweets
             }
         case 'SET_AUTHDATA':
             return {
@@ -24,7 +25,8 @@ const authReducer = (state = { isAuth: false, userId: '', token: '', name: '' },
                 isAuth: action.data.isAuth,
                 token: action.data.token,
                 userId: action.data.userId,
-                handle: action.data.handle
+                handle: action.data.handle,
+                likedTweets: action.likedTweets
             }
         case 'LOGOUT':
             localStorage.removeItem('token')
@@ -32,6 +34,7 @@ const authReducer = (state = { isAuth: false, userId: '', token: '', name: '' },
             localStorage.removeItem('userId')
             localStorage.removeItem('name')
             localStorage.removeItem('handle')
+            localStorage.removeItem('likedTweets')
 
             return {
                 ...state,
@@ -39,7 +42,8 @@ const authReducer = (state = { isAuth: false, userId: '', token: '', name: '' },
                 token: null,
                 userId: null,
                 name: null,
-                handle: null
+                handle: null,
+                likedTweets: null
             }
         default: return state
     }
