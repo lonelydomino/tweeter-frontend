@@ -1,10 +1,15 @@
 
-const tweetsReducer = (state = { tweets:[] }, action) => {
+const tweetsReducer = (state = { tweets:[], likedTweets: [] }, action) => {
     switch(action.type){
         case 'POPULATE_TWEETS':
             return {
                 ...state,
                 tweets: action.tweets
+            }
+        case 'POPULATE_TWEET_LIKES':
+            return {
+                ...state,
+                likedTweets: action.payload.likedTweets
             }
         case 'ADD_TWEET':
             return {

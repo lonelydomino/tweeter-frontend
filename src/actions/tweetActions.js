@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux"
-
 export const fetchTweets = () => {
     return (dispatch) => {
         fetch('http://localhost:8080/feed/tweets')
@@ -7,6 +5,25 @@ export const fetchTweets = () => {
         .then(json =>{
             dispatch({type: 'POPULATE_TWEETS', tweets: json.tweets})
         })
+    }
+}
+
+export const fetchLikedTweets = (data) => {
+    return (dispatch) => {
+        fetch('http://localhost:8080/feed/tweets/' + data.userId + '/liked')
+        .then(resp => {
+            return resp.json()
+        })
+        .then(json => {
+            dispatch({type: 'POPULATE_TWEET_LIKES', payload: json })
+        })
+        .catch(error => console.log(error))
+    }
+}
+
+export const fetchUserTweets = () => {
+    return (dispatch) => {
+        
     }
 }
 
@@ -64,7 +81,7 @@ export const updateLikes = (tweetId, action) => {
             fetch('http://localhost:8080/feed/tweets/' + tweetId + '/act', {
                 method: 'PATCH',
                 headers: {
-                    Authorization : 'Bearer ' +localStorage.getItem('token'),
+                    Authorization : 'Bearer ' + localStorage.getItem('token'),
                     'Content-Type' : 'application/json'
                 },
                 body: JSON.stringify({

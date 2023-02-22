@@ -81,7 +81,6 @@ export const handleLogin = (data) => {
 }
 export const setAuthData = (data) => {
     return (dispatch) => {
-        debugger
         dispatch({type: 'SET_AUTHDATA', data})
     }
 

@@ -4,15 +4,26 @@ import { VStack, StackDivider, Center, Box } from '@chakra-ui/react'
 import TweetForm from '../TweetForm'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchTweets } from '../../actions/tweetActions'
+import { fetchLikedTweets } from '../../actions/tweetActions'
+
 
 const TweetsContainer = () => {
     const dispatch = useDispatch()
-    useEffect(() =>{
-        dispatch(fetchTweets())
-    }, [])
-
     const tweets = useSelector(state => state.tweets.tweets)
     const reversed = tweets.slice().reverse()
+    
+    useEffect(() =>{
+        const token = localStorage.getItem('token')
+        const userId = localStorage.getItem('userId')
+
+
+        dispatch(fetchTweets())
+        dispatch(fetchLikedTweets({userId: userId, token: token}))
+
+        //fetch liked Tweets and then pass down to each tweet and check if liked
+
+    }, [])
+
 
         return (
                 <Box w='30%'>
