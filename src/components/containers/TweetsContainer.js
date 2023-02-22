@@ -11,6 +11,7 @@ const TweetsContainer = () => {
     const dispatch = useDispatch()
     const tweets = useSelector(state => state.tweets.tweets)
     const reversed = tweets.slice().reverse()
+    const isAuth = useSelector( state => state.auth.isAuth)
     
     useEffect(() =>{
         const token = localStorage.getItem('token')
@@ -18,7 +19,9 @@ const TweetsContainer = () => {
 
 
         dispatch(fetchTweets())
-        dispatch(fetchLikedTweets({userId: userId, token: token}))
+        if(isAuth){
+            dispatch(fetchLikedTweets({userId: userId, token: token}))
+        }
 
         //fetch liked Tweets and then pass down to each tweet and check if liked
 

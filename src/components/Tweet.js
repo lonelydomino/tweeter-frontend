@@ -11,12 +11,12 @@ import { updateLikes } from '../actions/tweetActions'
 
 export const Tweet = ({ tweet }) => {
     useEffect(() => {
-        setLikedTweets(tweet, likedTweets)
+
     }, [])
     let size = 'lg'
     const dispatch = useDispatch()
 
-    const likedTweets = useSelector(state => state.auth.likedTweets)
+    const likedTweets = useSelector(state => state.tweets.likedTweets)
     const userId = useSelector(state => state.auth.userId)
     const isAuth = useSelector( state => state.auth.isAuth)
 
@@ -30,12 +30,11 @@ export const Tweet = ({ tweet }) => {
             //add icon in line?
         }
     }
-    const setLikedTweets = (tweet, likedTweets) => {
-        if(!likedTweets === undefined){
-            if(tweet._id === likedTweets[0]){
-                debugger
-            }
-        }
+    const checkLikedTweets = (tweetId) => {
+        // if(tweet === undefined) return 'Like'
+        if(likedTweets === undefined) return 'Like'
+        if(likedTweets.includes(tweetId)) return 'Unlike'
+        return 'Like'
     }
 
     const handleDelete = tweetId => {
@@ -45,7 +44,6 @@ export const Tweet = ({ tweet }) => {
     const handleLikes = (e, tweetId) => {
         let action = e.currentTarget.textContent
         toggleButtonText[action](e.currentTarget)
-       
         dispatch(updateLikes(tweetId, action))
     }
 
@@ -78,7 +76,7 @@ export const Tweet = ({ tweet }) => {
             },
              }}>
                 <Button className='tweet-footer-buttons' onClick={(e) => handleLikes(e, tweet._id)} flex='1' variant='ghost' leftIcon={<BiLike />}>
-                    Like
+                    {isAuth ? checkLikedTweets(tweet._id) : 'Like'}
                 </Button>
                 <Button className='tweet-footer-buttons' flex='1' variant='ghost' leftIcon={<BiChat />}>
                     Comment
