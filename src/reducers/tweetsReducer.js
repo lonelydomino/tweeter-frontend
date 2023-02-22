@@ -1,5 +1,6 @@
 
 const tweetsReducer = (state = { tweets:[], likedTweets: [] }, action) => {
+    let updatedTweets
     switch(action.type){
         case 'POPULATE_TWEETS':
             return {
@@ -17,11 +18,24 @@ const tweetsReducer = (state = { tweets:[], likedTweets: [] }, action) => {
                 tweets: [...state.tweets, action.tweet.tweet]
             }
         case 'DELETE_TWEET':
-            const updatedTweets = state.tweets.filter(t => t._id !== action.tweetId)
+            updatedTweets = state.tweets.filter(t => t._id !== action.payload)
             return {
                 ...state,
                 tweets: updatedTweets
             }
+        case "ADD_TO_LIKED_TWEETS":
+            return {
+                ...state,
+                likedTweets: [...state.likedTweets, action.payload]
+
+            }
+        case 'REMOVE_FROM_LIKED_TWEETS':
+            updatedTweets = state.likedTweets.filter(t => t !== action.payload)
+            return {
+                ...state,
+                likedTweets: updatedTweets
+            }
+            
 
             default: return state
     }

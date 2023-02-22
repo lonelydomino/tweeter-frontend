@@ -31,8 +31,6 @@ export const Tweet = ({ tweet }) => {
         }
     }
     const checkLikedTweets = (tweetId) => {
-        // if(tweet === undefined) return 'Like'
-        if(likedTweets === undefined) return 'Like'
         if(likedTweets.includes(tweetId)) return 'Unlike'
         return 'Like'
     }
@@ -75,12 +73,10 @@ export const Tweet = ({ tweet }) => {
                 minW: '136px',
             },
              }}>
-                <Button className='tweet-footer-buttons' onClick={(e) => handleLikes(e, tweet._id)} flex='1' variant='ghost' leftIcon={<BiLike />}>
-                    {isAuth ? checkLikedTweets(tweet._id) : 'Like'}
-                </Button>
-                <Button className='tweet-footer-buttons' flex='1' variant='ghost' leftIcon={<BiChat />}>
-                    Comment
-                </Button>
+                    {isAuth ? <Button className='tweet-footer-buttons' onClick={(e) => handleLikes(e, tweet._id)} flex='1' variant='ghost' leftIcon={<BiLike />}>{checkLikedTweets(tweet._id)}</Button> : null}       
+                    <Button className='tweet-footer-buttons' flex='1' variant='ghost' leftIcon={<BiChat />}>
+                        Comment
+                    </Button>
                 <Button className='tweet-footer-buttons' flex='1' variant='ghost' leftIcon={<BiShare />}>
                     Share
                 </Button>

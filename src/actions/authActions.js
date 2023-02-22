@@ -1,3 +1,5 @@
+import { fetchLikedTweets } from "./tweetActions"
+
 export const handleSignup = (data) => {
     return (dispatch) => {
         fetch('http://localhost:8080/auth/signup', {
@@ -61,11 +63,11 @@ export const handleLogin = (data) => {
         })
         .then( resData => {
             dispatch({type: 'LOGIN', userId: resData.userId, handle: resData.handle, name: resData.name, likedTweets: resData.likedTweets, token: resData.token, isAuth: true})
+            dispatch(fetchLikedTweets({userId: resData.userId, token: resData.token}))
+
             localStorage.setItem('token', resData.token)
             localStorage.setItem('handle', resData.handle)
             localStorage.setItem('userId', resData.userId)
-            localStorage.setItem('name', resData.name)
-            localStorage.setItem('likedTweets', resData.likedTweets)
             
             const remainingMilliseconds = 60 * 60 * 1000;
             const expiryDate = new Date(

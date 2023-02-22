@@ -20,6 +20,7 @@ export const LoginForm = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
     const [signUp, setSignup] = useState(false)
+    
     const handleSubmit = () => {
         const data = {
             email: emailRef.current.value,

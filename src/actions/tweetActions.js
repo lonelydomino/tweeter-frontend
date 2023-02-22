@@ -10,10 +10,12 @@ export const fetchTweets = () => {
 
 export const fetchLikedTweets = (data) => {
     return (dispatch) => {
-        fetch('http://localhost:8080/feed/tweets/' + data.userId + '/liked')
-        .then(resp => {
-            return resp.json()
+        fetch('http://localhost:8080/feed/tweets/' + data.userId + '/liked', {
+            headers: {
+                Authorization: 'Bearer ' + data.token
+            }
         })
+        .then(resp => resp.json())
         .then(json => {
             dispatch({type: 'POPULATE_TWEET_LIKES', payload: json })
         })
@@ -90,7 +92,9 @@ export const updateLikes = (tweetId, action) => {
                 })
             })
             .then(resp => {
+                action === 'Like' ? dispatch({type: 'ADD_TO_LIKED_TWEETS', payload: tweetId}):dispatch({type: 'REMOVE_FROM_LIKED_TWEETS', payload: tweetId})
             })
+            .catch(error => console.log(error))
             // dispatch(update number of likes in state)
         }
 }

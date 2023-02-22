@@ -17,11 +17,8 @@ const TweetsContainer = () => {
         const token = localStorage.getItem('token')
         const userId = localStorage.getItem('userId')
 
-
         dispatch(fetchTweets())
-        if(isAuth){
-            dispatch(fetchLikedTweets({userId: userId, token: token}))
-        }
+        
 
         //fetch liked Tweets and then pass down to each tweet and check if liked
 

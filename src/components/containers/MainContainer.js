@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { setAuthData } from '../../actions/authActions'
 import TweetsContainer from './TweetsContainer'
 import RightContainer from './RightContainer'
-import { fetchTweets } from '../../actions/tweetActions'
+import { fetchLikedTweets } from '../../actions/tweetActions'
 import NavContainer from './NavContainer'
 import { useDispatch } from 'react-redux'
 import { Box } from '@chakra-ui/react'
@@ -27,7 +27,9 @@ const MainContainer = () => {
         }
         // const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime()
         dispatch(setAuthData({isAuth: true, token: token, handle: handle, userId: userId }))
-
+        if(token){
+            dispatch(fetchLikedTweets({userId: userId, token: token}))
+        }
         //set autologout
     }, [])
 
