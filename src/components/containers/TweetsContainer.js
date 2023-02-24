@@ -7,12 +7,21 @@ import { fetchTweets } from '../../actions/tweetActions'
 import { fetchLikedTweets } from '../../actions/tweetActions'
 
 
-const TweetsContainer = () => {
+const TweetsContainer = (props) => {
+    // debugger
     const dispatch = useDispatch()
+    const curretUserId = useSelector(state => state.auth.userId)
     const tweets = useSelector(state => state.tweets.tweets)
-    const reversed = tweets.slice().reverse()
     const isAuth = useSelector( state => state.auth.isAuth)
-    
+    let tweetsToUse = []
+    // debugger
+    if(props.action === 'mytweets'){
+        tweetsToUse = tweets.filter( t => t.authorId === curretUserId).slice().reverse()
+    } else {
+        tweetsToUse = tweets.slice().reverse()
+    }
+
+    // debugger
     useEffect(() =>{
         const token = localStorage.getItem('token')
         const userId = localStorage.getItem('userId')
@@ -35,7 +44,7 @@ const TweetsContainer = () => {
                                 spacing={4}
                                 align='stretch' w="120%"
                             >
-                                { reversed.map(tweet => {
+                                { tweetsToUse.map(tweet => {
                                     return <Tweet key={tweet._id } tweet={tweet} />
                                 }) }
                             </VStack>

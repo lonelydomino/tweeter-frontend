@@ -8,6 +8,7 @@ import { fetchLikedTweets } from '../../actions/tweetActions'
 import NavContainer from './NavContainer'
 import { useDispatch } from 'react-redux'
 import { Box } from '@chakra-ui/react'
+import { Route, Routes } from 'react-router-dom'
 
 const MainContainer = () => {
     const dispatch = useDispatch()
@@ -35,11 +36,15 @@ const MainContainer = () => {
 
   return (
         <Box w='100%'>
-    <Flex>
-            <NavContainer />
-            <TweetsContainer />
-            <RightContainer />
-    </Flex>
+            <Flex>
+                    <NavContainer />
+                    <Routes>
+                        <Route path='/' element={<TweetsContainer/>} />
+                        <Route path='/mytweets' element={<TweetsContainer action={'mytweets'}/>} />
+                    </Routes>
+                    {/* <TweetsContainer /> */}
+                    <RightContainer />
+            </Flex>
         </Box>
   )
 }
