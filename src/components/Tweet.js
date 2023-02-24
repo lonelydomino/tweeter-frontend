@@ -8,6 +8,7 @@ import { BiLike, BiChat, BiShare } from 'react-icons/bi'
 import { AiFillDelete } from 'react-icons/ai'
 import '../styles/tweet.css'
 import { updateLikes } from '../actions/tweetActions'
+import { Popover, PopoverTrigger, PopoverContent, PopoverCloseButton, PopoverBody, PopoverHeader, PopoverArrow, Center } from '@chakra-ui/react'
 
 export const Tweet = ({ tweet }) => {
     useEffect(() => {
@@ -56,7 +57,18 @@ export const Tweet = ({ tweet }) => {
                         {/* <Text>Descriptors or Titles</Text> */}
                     </Box>
                 </Flex>
-                <IconButton variant='ghost' colorScheme='gray' aria-label='See Menu' icon={<BsThreeDotsVertical />} />
+                <Popover>
+                    <PopoverTrigger>
+                        <IconButton variant='ghost' colorScheme='gray' aria-label='See Menu' icon={<BsThreeDotsVertical />} />
+                    </PopoverTrigger>
+                    <PopoverContent>
+                        <PopoverArrow />
+                        <PopoverCloseButton />
+                        <Center>
+                            <PopoverBody><Button colorScheme='red'>Delete</Button></PopoverBody>
+                        </Center>
+                    </PopoverContent>
+                </Popover>
             </Flex>
             </CardHeader>
             <CardBody>
@@ -74,13 +86,13 @@ export const Tweet = ({ tweet }) => {
             },
              }}>
                     {isAuth ? <Button className='tweet-footer-buttons' onClick={(e) => handleLikes(e, tweet._id)} flex='1' variant='ghost' leftIcon={<BiLike />}>{checkLikedTweets(tweet._id)}</Button> : null}       
-                    <Button className='tweet-footer-buttons' flex='1' variant='ghost' leftIcon={<BiChat />}>
+                    {/* <Button className='tweet-footer-buttons' flex='1' variant='ghost' leftIcon={<BiChat />}>
                         Comment
-                    </Button>
-                <Button className='tweet-footer-buttons' flex='1' variant='ghost' leftIcon={<BiShare />}>
+                    </Button> */}
+                {/* <Button className='tweet-footer-buttons' flex='1' variant='ghost' leftIcon={<BiShare />}>
                     Share
-                </Button>
-                {isAuth && userId === tweet.authorId ? <Button className='tweet-footer-buttons' flex='1' variant='ghost' leftIcon={<AiFillDelete />} onClick={() => handleDelete(tweet._id)}>Delete</Button> : null }
+                </Button> */}
+                {/* {isAuth && userId === tweet.authorId ? <Button className='tweet-footer-buttons' flex='1' variant='ghost' leftIcon={<AiFillDelete />} onClick={() => handleDelete(tweet._id)}>Delete</Button> : null } */}
             </CardFooter>    
     
     </Card>

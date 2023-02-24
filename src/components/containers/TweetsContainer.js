@@ -39,7 +39,6 @@ const TweetsContainer = (props) => {
                         <TweetForm />
                         <Center>
                             <VStack 
-                                divider={<StackDivider borderColor='green.200' />}
                                 spacing={4}
                                 align='stretch' w="120%"
                             >

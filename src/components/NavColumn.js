@@ -9,11 +9,11 @@ export const NavColumn = () => {
         <VStack id='navcolumn' spacing={8}>
             <Link as={ReactLink} to='/'>Home</Link>
             {isAuth ? <Link as={ReactLink} to='/mytweets'>My Tweets</Link> : null }
-            <Link>Notifications</Link>
-            <Link>Messages</Link>
-            <Link>Bookmarks</Link>
+            {/* <Link>Notifications</Link> */}
+            {/* <Link>Messages</Link> */}
+            {/* <Link>Bookmarks</Link> */}
             <Link>Profile</Link>
-            <Link>More</Link>
+            {/* <Link>More</Link> */}
             <Button colorScheme='blue'>Tweet</Button>
         </VStack>
   )
