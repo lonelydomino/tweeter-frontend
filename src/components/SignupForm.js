@@ -3,6 +3,7 @@ import '../styles/signupform.css'
 import {
     FormControl,
     FormLabel,
+    Text,
     FormErrorMessage,
     FormHelperText, Input, Center, VStack, Button
   } from '@chakra-ui/react'
@@ -34,6 +35,7 @@ export const SignupForm = () => {
         <FormControl>
             <Center>
                 <VStack>
+                    <Text>New to Tweeter?</Text>
                     <FormLabel>Email address</FormLabel>
                     <Input ref={emailRef} type='email' />
                     <FormLabel>Handle</FormLabel>

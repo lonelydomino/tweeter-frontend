@@ -42,8 +42,6 @@ export const LoginForm = () => {
                 </VStack>
             </Center>
         </FormControl>
-        <Center my={5}><Button onClick={() => setSignup(true)}colorScheme='blue'>New? Sign up</Button></Center>
-        {signUp ? <SignupForm /> : null}
     </div>
   )
 }

@@ -8,7 +8,6 @@ import { fetchLikedTweets } from '../../actions/tweetActions'
 
 
 const TweetsContainer = (props) => {
-    // debugger
     const dispatch = useDispatch()
     const curretUserId = useSelector(state => state.auth.userId)
     const tweets = useSelector(state => state.tweets.tweets)
@@ -16,7 +15,7 @@ const TweetsContainer = (props) => {
     let tweetsToUse = []
     // debugger
     if(props.action === 'mytweets'){
-        tweetsToUse = tweets.filter( t => t.authorId === curretUserId).slice().reverse()
+        tweetsToUse = tweets.filter(t => t.authorId === curretUserId).slice().reverse()
     } else {
         tweetsToUse = tweets.slice().reverse()
     }

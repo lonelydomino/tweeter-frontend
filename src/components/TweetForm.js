@@ -9,9 +9,8 @@ import {
 
 const TweetForm = (props) => {
     const tweetContentRef = useRef()
-    const userId = useSelector( state => {
-        return state.auth.userId
-    })
+    const userId = useSelector( state => state.auth.userId)
+    const isAuth = useSelector(state => state.auth.isAuth)
     const token = useSelector(state => state.auth.token)
     
     const handle = useSelector(state => state.auth.handle)
@@ -31,7 +30,7 @@ const TweetForm = (props) => {
   return (
         <Box w='100%'>
             <Center my='2rem'>
-                <FormControl width='90%'>
+                <FormControl isDisabled={!isAuth} width='90%'>
                     <FormLabel>Tweet</FormLabel>
                     <Input ref={tweetContentRef} type='text' />
                     <FormHelperText>What's happening?</FormHelperText>
