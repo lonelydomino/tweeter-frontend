@@ -6,13 +6,14 @@ import TweetsContainer from './TweetsContainer'
 import RightContainer from './RightContainer'
 import { fetchLikedTweets } from '../../actions/tweetActions'
 import NavContainer from './NavContainer'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Box } from '@chakra-ui/react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, Navigate } from 'react-router-dom'
+import Protected from '../Protected'
 
 const MainContainer = () => {
     const dispatch = useDispatch()
-
+    const isAuth = useSelector(state => state.auth.isAuth)
     useEffect(() => {
         const token = localStorage.getItem('token')
         const expiryDate = localStorage.getItem('expiryDate')
@@ -40,7 +41,13 @@ const MainContainer = () => {
                     <NavContainer />
                     <Routes>
                         <Route path='/' element={<TweetsContainer/>} />
-                        <Route path='/mytweets' element={<TweetsContainer action={'mytweets'}/>} />
+                            <Route path='/mytweets' 
+                             element={
+                                 <Protected isLoggedIn={isAuth}>
+                                    <TweetsContainer action={'mytweets'}/>
+                                 </Protected>
+                                }
+                            />
                     </Routes>
                     {/* <TweetsContainer /> */}
                     <RightContainer />
