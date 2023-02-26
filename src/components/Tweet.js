@@ -57,6 +57,7 @@ export const Tweet = ({ tweet }) => {
                         {/* <Text>Descriptors or Titles</Text> */}
                     </Box>
                 </Flex>
+                { isAuth ? 
                 <Popover>
                     <PopoverTrigger>
                         <IconButton variant='ghost' colorScheme='gray' aria-label='See Menu' icon={<BsThreeDotsVertical />} />
@@ -68,7 +69,7 @@ export const Tweet = ({ tweet }) => {
                             <PopoverBody><Button colorScheme='red'>Delete</Button></PopoverBody>
                         </Center>
                     </PopoverContent>
-                </Popover>
+                </Popover> : null }
             </Flex>
             </CardHeader>
             <CardBody>
