@@ -9,6 +9,8 @@ import {
   } from '@chakra-ui/react'
   import { useDispatch } from 'react-redux'
 import { handleSignup } from '../actions/authActions'
+import AvatarUpload from './AvatarUpload'
+import { useState } from 'react'
 
 export const SignupForm = () => {
     const dispatch = useDispatch()
@@ -16,15 +18,21 @@ export const SignupForm = () => {
     const passwordRef = useRef()
     const emailRef = useRef()
     const handleRef = useRef()
+    const [image, setImage] = useState(null)
+
+    const imageSet = (image) => {
+        setImage(image)
+    }
 
     const handleSubmit = () => {
         const data = {
+            imageUrl: URL.createObjectURL(image),
             name: nameRef.current.value,
             password: passwordRef.current.value,
             email: emailRef.current.value,
             handle: handleRef.current.value
         }
-        
+        debugger
         dispatch(handleSignup(data))
     }
 
@@ -36,6 +44,7 @@ export const SignupForm = () => {
             <Center>
                 <VStack>
                     <Text>New to Tweeter?</Text>
+                    <AvatarUpload setImage={imageSet}/>
                     <FormLabel>Email address</FormLabel>
                     <Input ref={emailRef} type='email' />
                     <FormLabel>Handle</FormLabel>

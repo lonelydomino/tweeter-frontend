@@ -9,6 +9,7 @@ import { createStore } from 'redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import { BrowserRouter } from 'react-router-dom'
 
+
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunk))
 const root = ReactDOM.createRoot(document.getElementById('root'));
 let store = createStore(rootReducer, composedEnhancer)

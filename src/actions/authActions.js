@@ -2,12 +2,14 @@ import { fetchLikedTweets } from "./tweetActions"
 
 export const handleSignup = (data) => {
     return (dispatch) => {
+        debugger
         fetch('http://localhost:8080/auth/signup', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                image: data.imageUrl,
                 email: data.email,
                 password: data.password,
                 name: data.name,

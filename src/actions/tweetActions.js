@@ -10,6 +10,7 @@ export const fetchTweets = () => {
 
 export const fetchLikedTweets = (data) => {
     return (dispatch) => {
+        // debugger
         fetch('http://localhost:8080/feed/tweets/' + data.userId + '/liked', {
             headers: {
                 Authorization: 'Bearer ' + data.token
