@@ -2,7 +2,7 @@ import { Box, Button, Card, CardHeader, Heading, CardBody, Text, Flex, IconButto
 import React, { useEffect } from 'react'
 import { Avatar } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteTweet } from '../actions/tweetActions'
+// import { deleteTweet } from '../actions/tweetActions'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { BiLike } from 'react-icons/bi'
 import '../styles/tweet.css'
@@ -16,7 +16,7 @@ export const Tweet = ({ tweet }) => {
     const dispatch = useDispatch()
 
     const likedTweets = useSelector(state => state.tweets.likedTweets)
-    const userId = useSelector(state => state.auth.userId)
+    // const userId = useSelector(state => state.auth.userId)
     const isAuth = useSelector( state => state.auth.isAuth)
 
     const toggleButtonText = {
