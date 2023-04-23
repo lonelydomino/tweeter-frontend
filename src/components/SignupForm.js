@@ -3,9 +3,7 @@ import '../styles/signupform.css'
 import {
     FormControl,
     FormLabel,
-    Text,
-    FormErrorMessage,
-    FormHelperText, Input, Center, VStack, Button
+    Text, Input, Center, VStack, Button
   } from '@chakra-ui/react'
   import { useDispatch } from 'react-redux'
 import { handleSignup } from '../actions/authActions'

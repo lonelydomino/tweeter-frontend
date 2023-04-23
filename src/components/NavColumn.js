@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, VStack, Box, Button } from '@chakra-ui/react'
+import { Link, VStack, Button } from '@chakra-ui/react'
 import '../styles/navcolumn.css'
 import { useSelector } from 'react-redux'
 import { Link as ReactLink} from 'react-router-dom'

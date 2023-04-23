@@ -1,20 +1,18 @@
 import { Box, Button, Card, CardHeader, Heading, CardBody, Text, Flex, IconButton, CardFooter } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
-import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
+import { Avatar } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteTweet } from '../actions/tweetActions'
 import { BsThreeDotsVertical } from 'react-icons/bs'
-import { BiLike, BiChat, BiShare } from 'react-icons/bi'
-import { AiFillDelete } from 'react-icons/ai'
+import { BiLike } from 'react-icons/bi'
 import '../styles/tweet.css'
 import { updateLikes } from '../actions/tweetActions'
-import { Popover, PopoverTrigger, PopoverContent, PopoverCloseButton, PopoverBody, PopoverHeader, PopoverArrow, Center } from '@chakra-ui/react'
+import { Popover, PopoverTrigger, PopoverContent, PopoverCloseButton, PopoverBody, PopoverArrow, Center } from '@chakra-ui/react'
 
 export const Tweet = ({ tweet }) => {
     useEffect(() => {
 
     }, [])
-    let size = 'lg'
     const dispatch = useDispatch()
 
     const likedTweets = useSelector(state => state.tweets.likedTweets)
@@ -36,9 +34,9 @@ export const Tweet = ({ tweet }) => {
         return 'Like'
     }
 
-    const handleDelete = tweetId => {
-        dispatch(deleteTweet(tweetId, userId))
-    }
+    // const handleDelete = tweetId => {
+    //     dispatch(deleteTweet(tweetId, userId))
+    // }
 
     const handleLikes = (e, tweetId) => {
         let action = e.currentTarget.textContent

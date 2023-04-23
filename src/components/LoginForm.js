@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../styles/loginform.css'
 import {
     FormControl,
     FormLabel,
-    FormErrorMessage,
-    FormHelperText, 
     Input, 
     Center, 
     VStack,
@@ -13,13 +11,11 @@ import {
 import { useDispatch } from 'react-redux'
 import { useRef } from 'react'
 import { handleLogin } from '../actions/authActions'
-import { SignupForm } from './SignupForm'
 
 export const LoginForm = () => {
     const dispatch = useDispatch()
     const emailRef = useRef()
     const passwordRef = useRef()
-    const [signUp, setSignup] = useState(false)
     
     const handleSubmit = () => {
         const data = {

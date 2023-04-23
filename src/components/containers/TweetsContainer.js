@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react'
 import { Tweet } from '../Tweet'
-import { VStack, StackDivider, Center, Box } from '@chakra-ui/react'
+import { VStack, Center, Box } from '@chakra-ui/react'
 import TweetForm from '../TweetForm'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchTweets } from '../../actions/tweetActions'
-import { fetchLikedTweets } from '../../actions/tweetActions'
 
 
 const TweetsContainer = (props) => {
     const dispatch = useDispatch()
     const curretUserId = useSelector(state => state.auth.userId)
     const tweets = useSelector(state => state.tweets.tweets)
-    const isAuth = useSelector( state => state.auth.isAuth)
     let tweetsToUse = []
     // debugger
     if(props.action === 'mytweets'){
@@ -22,15 +20,10 @@ const TweetsContainer = (props) => {
 
     // debugger
     useEffect(() =>{
-        const token = localStorage.getItem('token')
-        const userId = localStorage.getItem('userId')
-
         dispatch(fetchTweets())
-        
-
         //fetch liked Tweets and then pass down to each tweet and check if liked
 
-    }, [])
+    })
 
 
         return (

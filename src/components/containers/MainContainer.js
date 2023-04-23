@@ -35,7 +35,7 @@ const MainContainer = () => {
             dispatch(fetchLikedTweets({userId: userId, token: token}))
         }
         //set autologout
-    }, [])
+    })
 
   return (
         <Box w='100%'>
