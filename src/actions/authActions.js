@@ -3,7 +3,7 @@ import { fetchLikedTweets } from "./tweetActions"
 export const handleSignup = (data) => {
     return (dispatch) => {
         debugger
-        fetch('http://localhost:8080/auth/signup', {
+        fetch('https://tweeter-backend.herokuapp.com//auth/signup', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -43,7 +43,7 @@ export const handleSignup = (data) => {
 
 export const handleLogin = (data) => {
     return (dispatch) => {
-        fetch('http://localhost:8080/auth/login', {
+        fetch('https://tweeter-backend.herokuapp.com//auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

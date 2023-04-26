@@ -1,6 +1,6 @@
 export const fetchTweets = () => {
     return (dispatch) => {
-        fetch('http://localhost:8080/feed/tweets')
+        fetch('https://tweeter-backend.herokuapp.com//feed/tweets')
         .then(resp => resp.json())
         .then(json =>{
             dispatch({type: 'POPULATE_TWEETS', tweets: json.tweets})
@@ -11,7 +11,7 @@ export const fetchTweets = () => {
 export const fetchLikedTweets = (data) => {
     return (dispatch) => {
         // debugger
-        fetch('http://localhost:8080/feed/tweets/' + data.userId + '/liked', {
+        fetch('https://tweeter-backend.herokuapp.com//feed/tweets/' + data.userId + '/liked', {
             headers: {
                 Authorization: 'Bearer ' + data.token
             }
@@ -32,7 +32,7 @@ export const fetchUserTweets = () => {
 
 export const createTweet = (data) => {
     return dispatch => {
-        fetch('http://localhost:8080/feed/tweet', {
+        fetch('https://tweeter-backend.herokuapp.com//feed/tweet', {
             method: 'POST',
             headers: {'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + data.token},
@@ -58,7 +58,7 @@ export const createTweet = (data) => {
 
 export const deleteTweet = (tweetId, userId) => {
     return (dispatch) => {
-        fetch('http://localhost:8080/feed/tweet/' + tweetId, {
+        fetch('https://tweeter-backend.herokuapp.com//feed/tweet/' + tweetId, {
             method: 'DELETE',
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -81,7 +81,7 @@ export const deleteTweet = (tweetId, userId) => {
 
 export const updateLikes = (tweetId, action) => {
         return (dispatch) => {
-            fetch('http://localhost:8080/feed/tweets/' + tweetId + '/act', {
+            fetch('https://tweeter-backend.herokuapp.com//feed/tweets/' + tweetId + '/act', {
                 method: 'PATCH',
                 headers: {
                     Authorization : 'Bearer ' + localStorage.getItem('token'),
